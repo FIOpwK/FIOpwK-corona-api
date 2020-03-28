@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Table } from 'semantic-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -56,35 +56,93 @@ export default function StateList(props) {
     case_number: "17th"
     location: ""
      */
+    const deaths = overview.map(stat => stat.deaths)
+    const recovered = overview.map(stat => stat.recovered)
+    const confirmed = overview.map(stat => stat.confirmed)
+    const country = overview.map(stat => stat.country)
+    const city = overview.map(stat => stat.city)
+    const state = overview.map(stat => stat.province)
+    const lastUpdate = overview.map(stat => stat.lastUpdate)
+
+    const tableData = [
+        {
+            state: state,
+            deaths: deaths,
+            recovered: recovered,
+            confirmed: confirmed,
+            country: country,
+            city: city,
+            lastUpdate: lastUpdate
+        }
+
+
+    ]
+    const headerRow = ['State', 'Deaths', 'Recovered', 'Confirmed Cases', 'Country', 'City', 'lastUpdate']
+
+    const renderBodyRow = ({ deaths, recovered, confirmed, state, city, lastUpdate, country }, i) => ({
+        cells: [
+            state || 'Not specified',
+            deaths || 'Not specified',
+            recovered || 'Not specified',
+            confirmed || 'Not specified',
+            country || 'Not specified',
+            city || 'Not specified',
+            lastUpdate || 'Not specified'
+        ]
+
+    })
+
+    const TableData = (props) => (
+        // <Table
+        //     // tableData={tableData}
+        //     // renderBodyRow={renderBodyRow}
+        //     // celled
+        //     // structured
+        //     // headerRow={headerRow}
+        // />
+
+
+            <Table
+            tableData={tableData}
+            renderBodyRow={renderBodyRow}
+            celled
+            structured
+            headerRow={headerRow}
+            >
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell rowSpan='2'>Country</Table.HeaderCell>
+                        <Table.HeaderCell rowSpan='3'>State</Table.HeaderCell>
+                        <Table.HeaderCell rowSpan='3'>City</Table.HeaderCell>
+                        <Table.HeaderCell textAlign='center' colSpan='3'>Status</Table.HeaderCell>  
+                        <Table.HeaderCell colSpan='3'>Last Updated</Table.HeaderCell>
+
+
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.HeaderCell>Deaths</Table.HeaderCell>
+                        <Table.HeaderCell>Recoveries</Table.HeaderCell>
+                        <Table.HeaderCell>Confirmed Cases</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                    <Table.Row textAlign='center'>
+
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                    </Table.Row>
+                </Table.Body>
+
+            </Table>
+    )
 
     return (
-        <div className="state-container">
-            {
-                overview.map(stat => (
-                    <Card 
-                    key={uuidv4()}
-                    color="purple" style={{ border: '1px solid', margin: '2%' }}>
-                        <Card.Content>
+        <div>
+            <TableData/>
 
-                            <Card.Header>{stat.country}</Card.Header>
-                            <p>has confirmed</p>
-                            <Card.Meta>{stat.recovered}</Card.Meta>
-                            <p>recovered</p> <p>with</p>
-                            <Card.Meta>{stat.deaths}</Card.Meta>
-                            <p>deaths</p>
-                            <p>last updated</p>
-                            <Card.Meta>{stat.lastUpdate}</Card.Meta>
-                            <p>This is their</p>
-                            <Card.Description>{stat.confirmed}</Card.Description>
-                            <p>cases</p>
-                            <p>in</p>
-                            <Card.Description>{stat.province}</Card.Description>
-                        </Card.Content>
-
-                    </Card>
-
-                ))
-            }
 
         </div>
     )
