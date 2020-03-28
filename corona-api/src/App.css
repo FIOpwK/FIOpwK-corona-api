@@ -13,6 +13,21 @@
   }
 }
 
+
+
+/* my stuff starts */
+.state-container {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+}
+
+/* my stuff ends */
+
+
+
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
