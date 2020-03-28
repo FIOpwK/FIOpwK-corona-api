@@ -91,15 +91,23 @@ export default function StateList(props) {
         ]
 
     })
+   
 
-    const TableData = (props) => (
-        // <Table
+    const TableData = () => (
+        <Table
         //     // tableData={tableData}
         //     // renderBodyRow={renderBodyRow}
         //     // celled
         //     // structured
         //     // headerRow={headerRow}
-        // />
+        />
+
+
+    )
+
+    return (
+        <div>
+            
 
 
             <Table
@@ -108,10 +116,11 @@ export default function StateList(props) {
             celled
             structured
             headerRow={headerRow}
+            columns='16'
             >
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell rowSpan='2'>Country</Table.HeaderCell>
+                        <Table.HeaderCell content='Country' rowSpan='2'></Table.HeaderCell>
                         <Table.HeaderCell rowSpan='3'>State</Table.HeaderCell>
                         <Table.HeaderCell rowSpan='3'>City</Table.HeaderCell>
                         <Table.HeaderCell textAlign='center' colSpan='3'>Status</Table.HeaderCell>  
@@ -128,22 +137,18 @@ export default function StateList(props) {
 
                 <Table.Body>
                     <Table.Row textAlign='center'>
+       
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
+                        <Table.Cell>Test</Table.Cell>
 
-                        <Table.Cell>Test</Table.Cell>
-                        <Table.Cell>Test</Table.Cell>
-                        <Table.Cell>Test</Table.Cell>
-                        <Table.Cell>Test</Table.Cell>
                     </Table.Row>
                 </Table.Body>
 
             </Table>
-    )
-
-    return (
-        <div>
-            <TableData/>
-
-
         </div>
     )
 }
